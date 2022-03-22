@@ -8,8 +8,6 @@ import mindustry.ctype.ContentList;
 
 public class Fmod extends Mod{
 
-
-
     public ContentList[] tiContent = {
             new BasicItems(),
             new BasicLiquid()
