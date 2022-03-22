@@ -10,7 +10,7 @@ public class BasicItems implements ContentList{
     @Override
     public void load(){
         carbon = new Item("carbon",Color.valueOf("1a1919")){{
-            localizedName = "";
+            localizedName = "carbon";
             description = "Кусок чистого углерода.";
             cost = 0.2f;
             alwaysUnlocked = true;
@@ -18,7 +18,7 @@ public class BasicItems implements ContentList{
             flammability = 0;
             radioactivity = 0;
         }};
-        carbon_fiber = new Item("carbon_fiber",Color.valueOf("313131")){{
+        carbon_fiber = new Item("carbon-fiber",Color.valueOf("313131")){{
             description = "Гибкие углеродные нити.";
             cost = 0.2f;
             alwaysUnlocked = true;
