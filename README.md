@@ -1,55 +1,26 @@
-##Hello world!
+#Hello world!
 Now I'm creating my own mod, if you want you can try it.
 :)
 
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##Адемун гей
+#Ademun gay!
