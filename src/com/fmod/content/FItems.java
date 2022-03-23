@@ -4,7 +4,7 @@ import arc.graphics.*;
 import mindustry.ctype.ContentList;
 import mindustry.type.Item;
 
-public class BasicItems implements ContentList{
+public class FItems implements ContentList{
     public static Item
              carbon, carbon_fiber, composite, fiberglass;
     @Override

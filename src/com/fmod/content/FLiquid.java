@@ -4,7 +4,7 @@ import arc.graphics.*;
 import mindustry.ctype.ContentList;
 import mindustry.type.Liquid;
 
-public class BasicLiquid implements ContentList{
+public class FLiquid implements ContentList{
     public static Liquid
              gas, resin;
     @Override

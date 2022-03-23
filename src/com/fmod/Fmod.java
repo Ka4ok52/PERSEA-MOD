@@ -1,18 +1,18 @@
 package com.fmod;
 
 import arc.util.*;
-import com.fmod.content.BasicItems;
-import com.fmod.content.BasicLiquid;
-import com.fmod.content.BaseBlocks;
+import com.fmod.content.FItems;
+import com.fmod.content.FLiquid;
+import com.fmod.content.FBlocks;
 import mindustry.mod.*;
 import mindustry.ctype.ContentList;
 
 public class Fmod extends Mod{
 
     public ContentList[] tiContent = {
-            new BasicItems(),
-            new BasicLiquid(),
-            new BaseBlocks()
+            new FItems(),
+            new FLiquid(),
+            new FBlocks()
     };
 
     public Fmod(){
