@@ -8,7 +8,6 @@ import mindustry.world.*;
 import mindustry.ctype.ContentList;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.production.*;
-
 import static mindustry.type.ItemStack.with;
 
 public class FBlocks implements ContentList {
