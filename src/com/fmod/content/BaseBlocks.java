@@ -71,6 +71,7 @@ public class BaseBlocks implements ContentList {
 
             consumes.liquid(Liquids.oil, 0.5f);
             consumes.item(Items.coal, 2);
+            consumes.power(1f);
         }};
         CompositeWall = new Wall("composite-wall") {{
             requirements(Category.defense, with(BasicItems.composite, 8));
