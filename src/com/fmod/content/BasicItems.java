@@ -10,7 +10,6 @@ public class BasicItems implements ContentList{
     @Override
     public void load(){
         carbon = new Item("carbon",Color.valueOf("1a1919")){{
-            localizedName = "carbon";
             description = "Кусок чистого углерода.";
             cost = 0.2f;
             alwaysUnlocked = true;
