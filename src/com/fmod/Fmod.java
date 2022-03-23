@@ -10,7 +10,6 @@ import mindustry.ctype.ContentList;
 public class Fmod extends Mod{
 
     public ContentList[] tiContent = {
-
             new FItems(),
             new FLiquid(),
             new FBlocks()

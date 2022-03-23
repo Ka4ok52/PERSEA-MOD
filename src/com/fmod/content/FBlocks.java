@@ -60,11 +60,12 @@ public class FBlocks implements ContentList {
         OilOffice = new GenericCrafter("oil-office"){{
             requirements(Category.crafting, with(Items.copper, 150, Items.lead, 100, Items.silicon, 40, Items.titanium, 40));
             description = "oh no";
+            craftTime = 20;
             hasItems = true;
             hasPower = true;
             hasLiquids = true;
             outputItem = new ItemStack(FItems.carbon, 2);
-            outputLiquid = new LiquidStack(FLiquid.gas, 0.5f);
+            outputLiquid = new LiquidStack(FLiquid.gas, 15f);
             size = 3;
 
             consumes.liquid(Liquids.oil, 0.5f);
