@@ -1,7 +1,7 @@
 displayName: "F-MOD"
 name: "fmod"
 author: "Ka4ok52_"
-description: "oh no"
+description: "мод от модера :)"
 main: "com.fmod.Fmod"
 version: "0.3_alpha"
 minGameVersion: 105
