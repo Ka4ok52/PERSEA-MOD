@@ -1,9 +1,7 @@
 package com.fmod;
 
 import arc.util.*;
-import com.fmod.content.FItems;
-import com.fmod.content.FLiquid;
-import com.fmod.content.FBlocks;
+import com.fmod.content.*;
 import mindustry.mod.*;
 import mindustry.ctype.ContentList;
 
@@ -11,7 +9,7 @@ public class Fmod extends Mod{
 
     public ContentList[] tiContent = {
             new FItems(),
-            new FLiquid(),
+            new FLiquids(),
             new FBlocks()
     };
 
