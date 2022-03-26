@@ -93,6 +93,7 @@ public class FBlocks implements ContentList {
                 consumes.item(FItems.carbon, 2);
                 consumes.power(1f);
         }};
+        //Smelter
         NuclearFurnace = new GenericCrafter("nuclear-furnace"){{
             requirements(Category.crafting, with(FItems.composite, 5, Items.silicon, 80, Items.titanium, 20, Items.thorium, 35, Items.surgeAlloy, 10));
             health = 450;
