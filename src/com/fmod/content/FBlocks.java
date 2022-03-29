@@ -23,7 +23,7 @@ public class FBlocks implements ContentList {
             //Walls
             CompositeWall, LargeCompositeWall, EneringWall, LargeEneringWall,
             //Ores
-            oreCryEner;
+            oreCryEnergy;
 
     @Override
     public void load() {
@@ -101,12 +101,12 @@ public class FBlocks implements ContentList {
             hasPower = true;
             itemCapacity = 10;
             size = 3;
-            outputItem = new ItemStack(FItems.eneringot,1);
+            outputItem = new ItemStack(FItems.energy_ingot,1);
             drawer = new DrawSmelter(){{
                 flameColor = Color.valueOf("f2df63");
             }};
 
-            consumes.items(with(FItems.composite,2, FItems.cryenerRaw,3, Items.surgeAlloy,1));
+            consumes.items(with(FItems.composite,2, FItems.cryEnergyRaw,3, Items.surgeAlloy,1));
             consumes.power(2f);
         }};
         //Walls
@@ -121,17 +121,17 @@ public class FBlocks implements ContentList {
             size = 2;
         }};
         EneringWall = new Wall("enering-wall"){{
-            requirements(Category.defense, with(FItems.eneringot,12, FItems.composite, 4));
+            requirements(Category.defense, with(FItems.energy_ingot,12, FItems.composite, 4));
             health = 890;
             size = 1;
         }};
         LargeEneringWall = new Wall("large-enering-wall"){{
-            requirements(Category.defense, with(FItems.eneringot,24, FItems.composite, 4));
+            requirements(Category.defense, with(FItems.energy_ingot,24, FItems.composite, 4));
             health = 3600;
             size = 2;
         }};
         //Ores
-        oreCryEner = new OreBlock(FItems.cryenerRaw){{
+        oreCryEnergy = new OreBlock("ore-crystal-energy",FItems.cryEnergyRaw){{
             oreDefault = true;
             oreThreshold = 0.841f;
             oreScale = 25.580953f;

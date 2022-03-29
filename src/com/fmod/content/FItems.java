@@ -1,12 +1,12 @@
 package com.fmod.content;
 
 import arc.graphics.*;
-import mindustry.ctype.ContentList;
-import mindustry.type.Item;
+import mindustry.ctype.*;
+import mindustry.type.*;
 
 public class FItems implements ContentList{
     public static Item
-             carbon, carbon_fiber, composite, fiberglass, cryenerRaw, eneringot;
+             carbon, carbon_fiber, composite, fiberglass, cryEnergyRaw, energy_ingot;
     @Override
     public void load(){
         carbon = new Item("carbon",Color.valueOf("1a1919")){{
@@ -23,7 +23,7 @@ public class FItems implements ContentList{
             flammability = 0;
             radioactivity = 0;
         }};
-        composite = new Item("composite",Color.valueOf("#272626")){{
+        composite = new Item("composite",Color.valueOf("272626")){{
             cost = 0.5f;
             alwaysUnlocked = true;
             explosiveness = 0;
@@ -37,7 +37,7 @@ public class FItems implements ContentList{
             flammability = 0;
             radioactivity = 0;
         }};
-        cryenerRaw = new Item("cryenerRaw",Color.valueOf("0f0f0f")){{
+        cryEnergyRaw = new Item("crystal-energy"){{
             cost = 0.3f;
             hardness = 4;
             charge = 0.5f;
@@ -45,7 +45,7 @@ public class FItems implements ContentList{
             flammability = 0;
             alwaysUnlocked = true;
         }};
-        eneringot = new Item("eneringot"){{
+        energy_ingot = new Item("energy-ingot",Color.valueOf("f3e979")){{
             cost = 0.3f;
             alwaysUnlocked = true;
             charge = 1.2f;
