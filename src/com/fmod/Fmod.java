@@ -4,6 +4,8 @@ import arc.util.*;
 import com.fmod.content.*;
 import mindustry.mod.*;
 import mindustry.ctype.ContentList;
+import mindustry.world.Block;
+import mindustry.world.draw.*;
 
 public class Fmod extends Mod{
 

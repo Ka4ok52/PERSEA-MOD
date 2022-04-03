@@ -1,6 +1,9 @@
 package com.fmod.content;
 
+import arc.Core;
 import arc.graphics.Color;
+import arc.graphics.g2d.TextureRegion;
+import arc.util.Log;
 import mindustry.content.*;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -10,7 +13,7 @@ import mindustry.ctype.ContentList;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.environment.OreBlock;
 import mindustry.world.blocks.production.*;
-import mindustry.world.draw.DrawSmelter;
+import mindustry.world.draw.*;
 
 import static mindustry.type.ItemStack.with;
 
@@ -61,6 +64,14 @@ public class FBlocks implements ContentList {
             hasPower = true;
             itemCapacity = 5;
             outputItem = new ItemStack(FItems.fiberglass, 2);
+            drawer = new DrawWeave() {
+                @Override
+                public void load(Block block) {
+                    super.load(block);
+
+                    Log.info(bottom);
+                }
+            };
             size = 2;
 
             consumes.items(with(Items.metaglass, 1));
@@ -131,7 +142,7 @@ public class FBlocks implements ContentList {
             size = 2;
         }};
         //Ores
-        oreCryEnergy = new OreBlock("ore-crystal-energy",FItems.cryEnergyRaw){{
+        oreCryEnergy = new OreBlock(FItems.cryEnergyRaw){{
             oreDefault = true;
             oreThreshold = 0.841f;
             oreScale = 25.580953f;
