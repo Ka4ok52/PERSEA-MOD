@@ -1,8 +1,6 @@
 package com.fmod.content;
 
-import arc.Core;
 import arc.graphics.Color;
-import arc.graphics.g2d.TextureRegion;
 import arc.util.Log;
 import mindustry.content.*;
 import mindustry.type.Category;
@@ -19,14 +17,14 @@ import static mindustry.type.ItemStack.with;
 
 public class FBlocks implements ContentList {
     public static Block
-            //Crafter
-            CarbonfiberCrafter, CompositeCrafter, OpticalfiberCrafter, OilOffice, ChemicalFactory,
-            //Smelter
-            NuclearFurnace,
-            //Walls
-            CompositeWall, LargeCompositeWall, EneringWall, LargeEneringWall,
-            //Ores
-            oreCryEnergy;
+    //Crafter
+    CarbonfiberCrafter, CompositeCrafter, OpticalfiberCrafter, OilOffice, ChemicalFactory,
+    //Smelter
+    NuclearFurnace,
+    //Walls
+    CompositeWall, LargeCompositeWall, EneringWall, LargeEneringWall,
+    //Ores
+    oreCryEnergy;
 
     @Override
     public void load() {
@@ -92,17 +90,17 @@ public class FBlocks implements ContentList {
             consumes.power(1f);
         }};
         ChemicalFactory = new LiquidConverter("chemical-factory"){{
-                requirements(Category.crafting, with(Items.copper, 150, Items.lead, 100, Items.silicon, 40, Items.titanium, 40));
-                craftTime = 20;
-                hasItems = true;
-                hasPower = true;
-                hasLiquids = true;
-                outputLiquid = new LiquidStack(FLiquids.resin, 0.25f);
-                size = 2;
+            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 100, Items.silicon, 40, Items.titanium, 40));
+            craftTime = 20;
+            hasItems = true;
+            hasPower = true;
+            hasLiquids = true;
+            outputLiquid = new LiquidStack(FLiquids.resin, 0.25f);
+            size = 2;
 
-                consumes.liquid(FLiquids.gas, 0.5f);
-                consumes.item(FItems.carbon, 2);
-                consumes.power(1f);
+            consumes.liquid(FLiquids.gas, 0.5f);
+            consumes.item(FItems.carbon, 2);
+            consumes.power(1f);
         }};
         //Smelter
         NuclearFurnace = new GenericCrafter("nuclear-furnace"){{

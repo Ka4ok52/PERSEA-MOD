@@ -37,7 +37,7 @@ public class FItems implements ContentList{
             flammability = 0;
             radioactivity = 0;
         }};
-        cryEnergyRaw = new Item("crystal-energy"){{
+        cryEnergyRaw = new Item("ore-crystal-energy",Color.valueOf("f3ba79")){{
             cost = 0.3f;
             hardness = 4;
             charge = 0.5f;
@@ -45,7 +45,7 @@ public class FItems implements ContentList{
             flammability = 0;
             alwaysUnlocked = true;
         }};
-        energy_ingot = new Item("energy-ingot",Color.valueOf("f3e979")){{
+        energy_ingot = new Item("energy-ingot",Color.valueOf("cfba67")){{
             cost = 0.3f;
             alwaysUnlocked = true;
             charge = 1.2f;
