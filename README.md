@@ -1,5 +1,7 @@
-# Hello world!
-<br/>
+![Logo](assets/icon.png)
+
+# F-MOD
+
 Now I'm creating my own mod, if you want you can try it.
 
 :)

@@ -3,6 +3,6 @@ name: "fmod"
 author: "Ka4ok52_"
 description: "oh no"
 main: "com.fmod.Fmod"
-version: "0.5_alpha"
+version: "0.8_alpha90"
 minGameVersion: 105
 java: true
