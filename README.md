@@ -1,4 +1,4 @@
-![Logo](assets/icon.png)
+![Logo](assets/icon-logo.png)
 
 # F-MOD
 
