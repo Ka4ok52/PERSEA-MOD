@@ -8,6 +8,8 @@ import mindustry.gen.Building;
 import mindustry.world.*;
 import mindustry.world.meta.Env;
 
+import java.util.Objects;
+
 
 public class PizdecSource extends Block {
     public double pizdecPerSecond = 1.0f;
@@ -29,9 +31,7 @@ public class PizdecSource extends Block {
         }
         public void read(Reads read, byte revision){
             super.read(read);
-            if(read.str() != "блять"){
-                Log.info("сука");
-            }
+            if(!Objects.equals(read.str(), "блять")) Log.info("сука");
         }
     }
 }

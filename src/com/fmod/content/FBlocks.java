@@ -1,8 +1,8 @@
 package com.fmod.content;
 
 import arc.graphics.Color;
-import arc.util.Log;
 import mindustry.content.*;
+import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
@@ -36,6 +36,7 @@ public class FBlocks implements ContentList {
             hasPower = true;
             itemCapacity = 10;
             outputItem = new ItemStack(FItems.carbon_fiber, 1);
+            craftEffect = Fx.coalSmeltsmoke;
             size = 2;
 
             consumes.items(with(FItems.carbon, 2));
@@ -49,6 +50,7 @@ public class FBlocks implements ContentList {
             hasLiquids = true;
             itemCapacity = 10;
             outputItem = new ItemStack(FItems.composite, 1);
+            craftEffect = Fx.pulverizeMedium;
             size = 3;
 
             consumes.items(with(FItems.carbon_fiber, 3, FItems.fiberglass, 2));
@@ -62,14 +64,10 @@ public class FBlocks implements ContentList {
             hasPower = true;
             itemCapacity = 5;
             outputItem = new ItemStack(FItems.fiberglass, 2);
-            drawer = new DrawWeave() {
-                @Override
-                public void load(Block block) {
-                    super.load(block);
-
-                    Log.info(bottom);
-                }
-            };
+            drawer = new DrawWeave();
+            craftEffect = Fx.smeltsmoke;
+            ambientSound = Sounds.techloop;
+            ambientSoundVolume = 0.02f;
             size = 2;
 
             consumes.items(with(Items.metaglass, 1));
@@ -114,6 +112,9 @@ public class FBlocks implements ContentList {
             drawer = new DrawSmelter(){{
                 flameColor = Color.valueOf("f2df63");
             }};
+            craftEffect = Fx.smeltsmoke;
+            ambientSound = Sounds.smelter;
+            ambientSoundVolume = 0.02f;
 
             consumes.items(with(FItems.composite,2, FItems.cryEnergyRaw,3, Items.surgeAlloy,1));
             consumes.power(2f);

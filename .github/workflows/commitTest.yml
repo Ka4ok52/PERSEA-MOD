@@ -32,4 +32,4 @@ jobs:
       with:
         java-version: 17
     - name: Build mod jar
-      run: ./gradlew jar
+      run: chmod +x gradlew && ./gradlew jar
