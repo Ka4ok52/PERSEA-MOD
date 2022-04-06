@@ -5,6 +5,3 @@
 Very "cool" mod which is in development
 
 
-
-
-## Ademun gay!
