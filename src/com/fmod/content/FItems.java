@@ -38,6 +38,7 @@ public class FItems implements ContentList{
             radioactivity = 0;
         }};
         cryEnergyRaw = new Item("ore-crystal-energy",Color.valueOf("f3ba79")){{
+            //ore item
             cost = 0.3f;
             hardness = 4;
             charge = 0.5f;

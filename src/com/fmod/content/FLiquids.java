@@ -9,6 +9,7 @@ public class FLiquids implements ContentList{
              gas, resin;
     @Override
     public void load(){
+        //gas? Hmmmmm.........
         gas = new Liquid("gas",Color.valueOf("c8a2c8")){{
             flammability = 1.2f;
             temperature = 0.4f;
