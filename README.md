@@ -1,4 +1,4 @@
-![Logo](assets/icon-logo.png)
+п»ї![Logo](assets/icon-logo.png)
 
 # F-MOD
 
@@ -6,7 +6,7 @@ Very "cool" mod which is in development.
 
 This seemingly small mod gives you the opportunity to get new types of crafting, mechanics and weapons.
 
-НвЮв, ЪРЧРЫЮбм Сл, ЭХСЮЫмиЮЩ ЬЮФ ФРХв ТЮЧЬЮЦЭЮбвм ЯЮЫгзШвм ЭЮТлХ ТШФл ЪаРдвР, ЬХеРЭШЪШ Ш ЮагЦШп.
+Р­С‚РѕС‚, РєР°Р·Р°Р»РѕСЃСЊ Р±С‹, РЅРµР±РѕР»СЊС€РѕР№ РјРѕРґ РґР°РµС‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїРѕР»СѓС‡РёС‚СЊ РЅРѕРІС‹Рµ РІРёРґС‹ РєСЂР°С„С‚Р°, РјРµС…Р°РЅРёРєРё Рё РѕСЂСѓР¶РёСЏ.
 
 # Compiling
 JDK 17
