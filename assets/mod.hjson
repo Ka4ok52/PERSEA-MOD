@@ -1,7 +1,6 @@
 displayName: "F-MOD"
 name: "fmod"
 author: "Ka4ok52_"
-description: "This mod will make you look at Mindustry from a new angle. Learn how to craft composite. Build EMP protection."
 main: "com.fmod.Fmod"
 version: "0.8_alpha96"
 minGameVersion: 125
