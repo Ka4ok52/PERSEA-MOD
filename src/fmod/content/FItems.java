@@ -1,4 +1,4 @@
-package com.fmod.content;
+package fmod.content;
 
 import arc.graphics.*;
 import mindustry.ctype.*;

@@ -1,4 +1,4 @@
-package com.fmod.content;
+package fmod.content;
 
 import arc.util.Log;
 import arc.util.Time;
@@ -6,7 +6,7 @@ import arc.util.io.Reads;
 import arc.util.io.Writes;
 import mindustry.gen.Building;
 import mindustry.world.*;
-import mindustry.world.meta.Env;
+import mindustry.world.meta.*;
 
 import java.util.Objects;
 

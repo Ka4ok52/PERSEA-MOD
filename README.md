@@ -9,4 +9,4 @@ This seemingly small mod gives you the opportunity to get new types of crafting,
 Этот, казалось бы, небольшой мод дает возможность получить новые виды крафта, механики и оружия.
 
 # Compiling
-JDK 17
+JDK 8

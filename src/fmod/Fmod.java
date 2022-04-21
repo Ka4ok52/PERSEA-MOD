@@ -1,13 +1,13 @@
-package com.fmod;
+package fmod;
 
 import arc.util.*;
-import com.fmod.content.*;
+import fmod.content.*;
 import mindustry.mod.*;
 import mindustry.ctype.ContentList;
 
 public class Fmod extends Mod{
     //loading game content into main class
-    public ContentList[] tiContent = {
+    public ContentList[] FContent = {
             new FItems(),
             new FLiquids(),
             new FBlocks()
@@ -19,8 +19,8 @@ public class Fmod extends Mod{
     //loading content into the game itself
     @Override
     public void loadContent(){
-         for (var v : tiContent) {
-             v.load();
+         for (ContentList f : FContent) {
+             f.load();
          }
     }
 }

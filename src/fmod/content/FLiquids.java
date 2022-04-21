@@ -1,4 +1,4 @@
-package com.fmod.content;
+package fmod.content;
 
 import arc.graphics.*;
 import mindustry.ctype.ContentList;
@@ -6,7 +6,7 @@ import mindustry.type.Liquid;
 
 public class FLiquids implements ContentList{
     public static Liquid
-             gas, resin;
+            gas, resin;
     @Override
     public void load(){
         //gas? Hmmmmm.........

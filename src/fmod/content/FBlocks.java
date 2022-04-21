@@ -1,4 +1,4 @@
-package com.fmod.content;
+package fmod.content;
 
 import arc.graphics.*;
 import mindustry.content.*;
@@ -7,6 +7,7 @@ import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.ctype.ContentList;
 import mindustry.world.blocks.defense.*;
+import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.environment.OreBlock;
 import mindustry.world.blocks.production.*;
 import mindustry.world.draw.*;
@@ -16,26 +17,28 @@ import static mindustry.type.ItemStack.with;
 public class FBlocks implements ContentList {
     public static Block
     //Crafter
-    CarbonfiberCrafter, CompositeCrafter, OpticalfiberCrafter, OilOffice, ChemicalFactory,
+    CarbonFiberCrafter, CompositeCrafter, OpticalFiberCrafter, OilOffice, ChemicalFactory,
     //Smelter
     NuclearFurnace,
     //Walls
-    CompositeWall, LargeCompositeWall, EneringWall, LargeEneringWall,
+    CompositeWall, LargeCompositeWall, EnergyWall, LargeEnergyWall,
+    //Turrets
+    TestDuo,
     //Ores
     oreCryEnergy;
 
     @Override
     public void load() {
         //Crafter
-        CarbonfiberCrafter = new GenericCrafter("carbonfiber-crafter") {{
+        CarbonFiberCrafter = new GenericCrafter("carbon-fiber-crafter") {{
             requirements(Category.crafting, with(Items.copper, 200, Items.lead, 150, Items.silicon, 55, Items.titanium, 60));
             health = 280;
             hasItems = true;
             hasPower = true;
             itemCapacity = 10;
             outputItem = new ItemStack(FItems.carbon_fiber, 1);
-            craftEffect = Fx.coalSmeltsmoke;
             size = 2;
+            craftEffect = Fx.pulverizeMedium;
 
             consumes.items(with(FItems.carbon, 2));
             consumes.power(2f);
@@ -48,14 +51,14 @@ public class FBlocks implements ContentList {
             hasLiquids = true;
             itemCapacity = 10;
             outputItem = new ItemStack(FItems.composite, 1);
-            craftEffect = Fx.pulverizeMedium;
             size = 3;
+            craftEffect = Fx.pulverizeMedium;
 
             consumes.items(with(FItems.carbon_fiber, 3, FItems.fiberglass, 2));
             consumes.liquid(FLiquids.resin, 0.25f);
             consumes.power(3f);
         }};
-        OpticalfiberCrafter = new GenericCrafter("opticalfiber-crafter") {{
+        OpticalFiberCrafter = new GenericCrafter("optical-fiber-crafter") {{
             requirements(Category.crafting, with(Items.copper, 150, Items.lead, 100, Items.silicon, 40, Items.titanium, 40));
             health = 240;
             hasItems = true;
@@ -63,10 +66,8 @@ public class FBlocks implements ContentList {
             itemCapacity = 5;
             outputItem = new ItemStack(FItems.fiberglass, 2);
             drawer = new DrawWeave();
-            craftEffect = Fx.smeltsmoke;
-            ambientSound = Sounds.techloop;
-            ambientSoundVolume = 0.02f;
             size = 2;
+            craftEffect = Fx.pulverizeMedium;
 
             consumes.items(with(Items.metaglass, 1));
             consumes.power(1f);
@@ -87,12 +88,16 @@ public class FBlocks implements ContentList {
         }};
         ChemicalFactory = new LiquidConverter("chemical-factory"){{
             requirements(Category.crafting, with(Items.copper, 150, Items.lead, 100, Items.silicon, 40, Items.titanium, 40));
-            craftTime = 20;
+            craftTime = 20f;
             hasItems = true;
             hasPower = true;
             hasLiquids = true;
+            solid = true;
+            outputsLiquid = true;
+            rotate = false;
             outputLiquid = new LiquidStack(FLiquids.resin, 0.25f);
             size = 2;
+            drawer = new DrawMixer(true);
 
             consumes.liquid(FLiquids.gas, 0.5f);
             consumes.item(FItems.carbon, 2);
@@ -112,7 +117,8 @@ public class FBlocks implements ContentList {
             }};
             craftEffect = Fx.smeltsmoke;
             ambientSound = Sounds.smelter;
-            ambientSoundVolume = 0.02f;
+            ambientSoundVolume = 0.6f;
+
 
             consumes.items(with(FItems.composite,2, FItems.cryEnergyRaw,3, Items.surgeAlloy,1));
             consumes.power(2f);
@@ -128,15 +134,36 @@ public class FBlocks implements ContentList {
             health = 4000;
             size = 2;
         }};
-        EneringWall = new Wall("enering-wall"){{
+        EnergyWall = new Wall("energy-wall"){{
             requirements(Category.defense, with(FItems.energy_ingot,12, FItems.composite, 4));
             health = 890;
             size = 1;
         }};
-        LargeEneringWall = new Wall("large-enering-wall"){{
+        LargeEnergyWall = new Wall("large-energy-wall"){{
             requirements(Category.defense, with(FItems.energy_ingot,24, FItems.composite, 4));
             health = 3600;
             size = 2;
+        }};
+        //Turrets
+        TestDuo = new ItemTurret("TestDuo"){{
+            requirements(Category.turret,with(FItems.composite, 15), true);
+            ammo(
+                    Items.copper, Bullets.standardCopper
+            );
+
+            spread =4f;
+            shots = 4;
+            alternate = true;
+            reloadTime = 15f;
+            restitution = 0.03f;
+            range = 110;
+            health = 350;
+            inaccuracy = 2f;
+            rotateSpeed = 10f;
+            ammoUseEffect = Fx.casing2;
+            size = 2;
+
+            limitRange();
         }};
         //Ores
         oreCryEnergy = new OreBlock(FItems.cryEnergyRaw){{
