@@ -23,14 +23,14 @@ public class FBlocks implements ContentList {
     //Walls
     CompositeWall, LargeCompositeWall, EnergyWall, LargeEnergyWall,
     //Turrets
-    TestDuo,
+    TestDuo, MegaDuo,
     //Ores
     oreCryEnergy;
 
     @Override
     public void load() {
         //Crafter
-        CarbonFiberCrafter = new GenericCrafter("carbon-fiber-crafter") {{
+        CarbonFiberCrafter = new GenericCrafter("carbon-fiber-press") {{
             requirements(Category.crafting, with(Items.copper, 200, Items.lead, 150, Items.silicon, 55, Items.titanium, 60));
             health = 280;
             hasItems = true;
@@ -43,7 +43,7 @@ public class FBlocks implements ContentList {
             consumes.items(with(FItems.carbon, 2));
             consumes.power(2f);
         }};
-        CompositeCrafter = new GenericCrafter("composite-crafter") {{
+        CompositeCrafter = new GenericCrafter("composite-press") {{
             requirements(Category.crafting, with(Items.copper, 200, Items.lead, 100, Items.silicon, 60, Items.titanium, 50, Items.thorium, 15));
             health = 450;
             hasItems = true;
@@ -152,7 +152,7 @@ public class FBlocks implements ContentList {
             );
 
             spread =4f;
-            shots = 4;
+            shots = 3;
             alternate = true;
             reloadTime = 15f;
             restitution = 0.03f;
@@ -160,6 +160,30 @@ public class FBlocks implements ContentList {
             health = 350;
             inaccuracy = 2f;
             rotateSpeed = 10f;
+            ammoUseEffect = Fx.casing2;
+            size = 2;
+
+            limitRange();
+        }};
+        MegaDuo = new ItemTurret("mega-duo"){{
+            requirements(Category.turret,with(Items.copper,35, Items.lead,15, FItems.composite,15), true);
+            ammo(
+                    Items.copper, Bullets.standardCopper,
+                    Items.graphite, Bullets.standardDense,
+                    Items.pyratite, Bullets.standardIncendiary,
+                    Items.silicon , Bullets.standardHoming
+            );
+
+            spread =4f;
+            shots = 2;
+            alternate = true;
+            reloadTime = 10f;
+            restitution = 0.03f;
+            range = 156;
+            shootCone = 15f;
+            health = 350;
+            inaccuracy = 2f;
+            rotateSpeed = 8f;
             ammoUseEffect = Fx.casing2;
             size = 2;
 
