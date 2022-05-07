@@ -9,6 +9,7 @@ import mindustry.ctype.*;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.environment.*;
+import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.production.*;
 import mindustry.world.draw.*;
 
@@ -18,16 +19,18 @@ public class FBlocks implements ContentList {
     public static Block
     // Crafter
     CarbonFiberCrafter, CompositePress, OpticalFiberCrafter, OilRefinery, PetroleumResinPlant, ChemicalFactory,
-            // Drill
-            toxicDrill,
-            // Smelter
-            NuclearFurnace,
-            // Walls
-            CompositeWall, LargeCompositeWall, EnergyWall, LargeEnergyWall,
-            // Turrets
-            TestDuo, BigDuo,
-            // Ores
-            oreCryEnergy;
+    // Drill
+    toxicDrill,
+    // Smelter
+    NuclearFurnace,
+    //Power
+    ReinforcedPowerNode,PowerSubstation,
+    // Walls
+    CompositeWall, LargeCompositeWall, EnergyWall, LargeEnergyWall,
+    // Turrets
+    TestDuo, BigDuo,
+    // Ores
+    oreCryEnergy;
 
     @Override
     public void load() {
@@ -165,6 +168,18 @@ public class FBlocks implements ContentList {
                 consumes.power(3f);
             }
         };
+        //Power
+        ReinforcedPowerNode = new PowerNode("reinforced-power-node"){{
+            requirements(Category.power, with(Items.copper, 3, Items.lead, 5, FItems.composite, 2));
+            maxNodes = 12;
+            laserRange = 10;
+        }};
+        PowerSubstation = new PowerNode("power-substation"){{
+            requirements(Category.power, with(Items.titanium, 10, Items.lead, 20, Items.silicon, 8, FItems.composite, 12, FItems.energy_ingot, 4));
+            size = 3;
+            maxNodes = 25;
+            laserRange = 12.5f;
+        }};
         // Drill
         toxicDrill = new Drill("toxicDrill-drill") {
             {
