@@ -2,6 +2,6 @@ displayName: F-MOD
 name: fmod
 author: Ka4ok52_
 main: fmod.Fmod
-version: 0.8_alpha105
+version: 0.8_alpha106
 minGameVersion: 131
 java: true

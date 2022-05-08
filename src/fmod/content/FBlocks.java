@@ -9,7 +9,7 @@ import mindustry.ctype.*;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.environment.*;
-import mindustry.world.blocks.power.PowerNode;
+import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.draw.*;
 
@@ -24,7 +24,7 @@ public class FBlocks implements ContentList {
     // Smelter
     NuclearFurnace,
     //Power
-    ReinforcedPowerNode,PowerSubstation,
+    ReinforcedPowerNode,PowerSubstation,CarbonBattery,improvedSolarPanel,improvedRtgGenerator,
     // Walls
     CompositeWall, LargeCompositeWall, EnergyWall, LargeEnergyWall,
     // Turrets
@@ -171,14 +171,35 @@ public class FBlocks implements ContentList {
         //Power
         ReinforcedPowerNode = new PowerNode("reinforced-power-node"){{
             requirements(Category.power, with(Items.copper, 3, Items.lead, 5, FItems.composite, 2));
-            maxNodes = 12;
-            laserRange = 10;
+            size = 2;
+            maxNodes = 2;
+            laserRange = 50;
         }};
         PowerSubstation = new PowerNode("power-substation"){{
             requirements(Category.power, with(Items.titanium, 10, Items.lead, 20, Items.silicon, 8, FItems.composite, 12, FItems.energy_ingot, 4));
             size = 3;
-            maxNodes = 25;
-            laserRange = 12.5f;
+            maxNodes = 30;
+            laserRange = 15.5f;
+        }};
+
+        CarbonBattery = new Battery("carbon-battery"){{
+            requirements(Category.power, with(Items.titanium, 40, Items.lead, 60, Items.silicon, 10, FItems.carbon_fiber, 15, FItems.energy_ingot, 10));
+            size = 3;
+            consumes.powerBuffered(65000f);
+            baseExplosiveness = 3f;
+        }};
+
+        improvedSolarPanel = new SolarGenerator("improved-solar-panel"){{
+            requirements(Category.power, with(Items.lead, 40, Items.titanium, 30, Items.silicon, 30, Items.phaseFabric, 15, FItems.energy_ingot, 15));
+            size = 3;
+            powerProduction = 1.8f;
+        }};
+
+        improvedRtgGenerator = new DecayGenerator("improved-rtg-generator"){{
+            requirements(Category.power, with(Items.lead, 100, Items.silicon, 75, Items.phaseFabric, 25, Items.plastanium, 75, FItems.composite, 30, FItems.energy_ingot, 5));
+            size = 3;
+            powerProduction = 5.5f;
+            itemDuration = 60 * 14f;
         }};
         // Drill
         toxicDrill = new Drill("toxicDrill-drill") {
