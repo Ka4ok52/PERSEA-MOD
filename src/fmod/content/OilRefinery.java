@@ -11,9 +11,9 @@ import mindustry.world.meta.*;
 import java.util.Objects;
 
 
-public class PizdecSource extends Block {
-    public double pizdecPerSecond = 1.0f;
-    public PizdecSource(String name){
+public class OilRefinery extends Block {
+    public double OilPerSecond = 1.0f;
+    public OilRefinery(String name){
         super(name);
         // инициализация переменных блока, зависит уже от создателя мода
         update = true;
@@ -21,9 +21,9 @@ public class PizdecSource extends Block {
         envEnabled = Env.any;
     }
 
-    public class PizdecSourceBuild extends Building {
+    public class OilRefineryBuild extends Building {
         public void updateTile(){ // обновление блока каждый кадр
-            health -= pizdecPerSecond / 60f * Time.delta;
+            health -= OilPerSecond / 60f * Time.delta;
         }
         public void write(Writes write){ // как сохранять блок?
             super.write(write);

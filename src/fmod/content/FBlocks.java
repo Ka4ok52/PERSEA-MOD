@@ -12,6 +12,7 @@ import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.draw.*;
+import fmod.content.OilRefinery;
 
 import static mindustry.type.ItemStack.with;
 
@@ -20,17 +21,17 @@ public class FBlocks implements ContentList {
     // Crafter
     CarbonFiberCrafter, CompositePress, OpticalFiberCrafter, OilRefinery, PetroleumResinPlant, ChemicalFactory,
     // Drill
-    toxicDrill,
+    ToxicDrill,
     // Smelter
     NuclearFurnace,
     //Power
-    ReinforcedPowerNode,PowerSubstation,CarbonBattery,improvedSolarPanel,improvedRtgGenerator,
+    ReinforcedPowerNode,PowerSubstation,CarbonBattery,ImprovedSolarPanel,ImprovedRtgGenerator,
     // Walls
     CompositeWall, LargeCompositeWall, EnergyWall, LargeEnergyWall,
     // Turrets
     TestDuo, BigDuo,
     // Ores
-    oreCryEnergy;
+    OreCryEnergy;
 
     @Override
     public void load() {
@@ -86,7 +87,7 @@ public class FBlocks implements ContentList {
                 consumes.power(1f);
             }
         };
-        OilRefinery = new GenericCrafter("oil-refinery") {
+        OilRefinery = new GenericCrafter("oil-refinery") { // then use OilRefinery.java as new block logic
             {
                 requirements(Category.crafting,
                         with(Items.copper, 150, Items.lead, 100, Items.silicon, 40, Items.titanium, 40));
@@ -139,7 +140,7 @@ public class FBlocks implements ContentList {
                 outputLiquid = new LiquidStack(FLiquids.catalyst, 0.25f);
 
                 consumes.liquid(FLiquids.gas, 0.25f);
-                consumes.item(FItems.carbon, 1);
+                consumes.liquid(Liquids.cryofluid, 0.25f);
                 consumes.power(1.1f);
             }
         };
@@ -189,20 +190,20 @@ public class FBlocks implements ContentList {
             baseExplosiveness = 3f;
         }};
 
-        improvedSolarPanel = new SolarGenerator("improved-solar-panel"){{
+        ImprovedSolarPanel = new SolarGenerator("improved-solar-panel"){{
             requirements(Category.power, with(Items.lead, 40, Items.titanium, 30, Items.silicon, 30, Items.phaseFabric, 15, FItems.energy_ingot, 15));
             size = 3;
             powerProduction = 1.8f;
         }};
 
-        improvedRtgGenerator = new DecayGenerator("improved-rtg-generator"){{
+        ImprovedRtgGenerator = new DecayGenerator("improved-rtg-generator"){{
             requirements(Category.power, with(Items.lead, 100, Items.silicon, 75, Items.phaseFabric, 25, Items.plastanium, 75, FItems.composite, 30, FItems.energy_ingot, 5));
             size = 3;
             powerProduction = 5.5f;
             itemDuration = 60 * 14f;
         }};
         // Drill
-        toxicDrill = new Drill("toxicDrill-drill") {
+        ToxicDrill = new Drill("toxicDrill-drill") {
             {
                 requirements(Category.production,
                         with(Items.lead, 35, Items.graphite, 30, Items.silicon, 30, Items.metaglass, 20,
@@ -298,7 +299,7 @@ public class FBlocks implements ContentList {
             }
         };
         // Ores
-        oreCryEnergy = new OreBlock(FItems.cryEnergyRaw) {
+        OreCryEnergy = new OreBlock(FItems.cryEnergyRaw) {
             {
                 oreDefault = true;
                 oreThreshold = 0.841f;
