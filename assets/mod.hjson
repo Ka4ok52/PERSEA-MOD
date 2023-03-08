@@ -1,7 +1,8 @@
 displayName: F-MOD
 name: fmod
-author: Ka4ok52_
+author: Ka4ok52_ and Shesus
+description: Perhaps there will be something...
 main: fmod.Fmod
 version: 0.8_alpha107
-minGameVersion: 140
+minGameVersion: 142
 java: true

@@ -1,14 +1,13 @@
 package fmod.content;
 
 import arc.graphics.*;
-import mindustry.ctype.*;
 import mindustry.type.*;
 
-public class FItems implements ContentList{
+public class FItems{
     public static Item
              carbon, carbon_fiber, composite, fiberglass, cryEnergyRaw, energy_ingot;
-    @Override
-    public void load(){
+
+    public static void load(){
         carbon = new Item("carbon",Color.valueOf("1a1919")){{
             cost = 0.3f;
             alwaysUnlocked = true;

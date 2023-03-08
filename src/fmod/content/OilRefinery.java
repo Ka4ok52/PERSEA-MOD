@@ -11,7 +11,7 @@ import mindustry.world.meta.*;
 import java.util.Objects;
 
 
-public class OilRefinery extends Block {
+public class OilRefinery extends Block{
     public double OilPerSecond = 1.0f;
     public OilRefinery(String name){
         super(name);

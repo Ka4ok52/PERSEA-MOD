@@ -1,21 +1,18 @@
 package fmod.content;
 
 import arc.graphics.*;
-import mindustry.ctype.*;
 import mindustry.type.*;
 
-public class FLiquids implements ContentList {
-    public static Liquid gas, resin, catalyst;
+public class FLiquids{
+    public static Liquid resin, catalyst, AssociatedPetroleumGas;
 
-    @Override
-    public void load() {
-        // gas? Hmmmmm.........
-        gas = new Liquid("gas", Color.valueOf("c8a2c8")) {
+    public static void load() {
+        AssociatedPetroleumGas = new Liquid("associated-petroleum-gas", Color.valueOf("7c539e")) {
             {
+                gas = true;
                 flammability = 1.2f;
                 temperature = 0.5f;
                 heatCapacity = 0.3f;
-                viscosity = 0.2f;
                 explosiveness = 2f;
             }
         };
@@ -25,13 +22,13 @@ public class FLiquids implements ContentList {
                 temperature = 0.6f;
                 heatCapacity = 0.8f;
                 viscosity = 0.9f;
-                explosiveness = 0;
+                explosiveness = 0f;
             }
         };
         catalyst = new Liquid("catalyst", Color.valueOf("27958f")) {
             {
                 heatCapacity = 0.4f;
-                temperature = 0.5f;
+                temperature = 0.4f;
             }
         };
     }

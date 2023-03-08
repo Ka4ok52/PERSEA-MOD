@@ -1,15 +1,18 @@
 ﻿![Logo](assets/icon-logo.png)
 
 # F-MOD
-
-Very "cool" mod which is in development.
-
-This seemingly small mod gives you the opportunity to get new types of crafting, mechanics and weapons.
-
-Этот, казалось бы, небольшой мод дает возможность получить новые виды крафта, механики и оружия.
+A java mod for testing and doing chaotic fun.
+Java мод для тестирования и хаотичного веселья.
 
 ## Version
-0.8_alpha106
+0.8_alpha107
 
-# Compiling
-JDK 8
+## Author
+`Ka4ok52_`\
+`Shesus`
+
+## Compiling
+JDK 17
+
+### Linux
+Build jar: `./gradlew jar`
