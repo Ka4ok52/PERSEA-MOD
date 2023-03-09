@@ -119,8 +119,8 @@ public class FBlocks{
                 size = 2;
                 drawer = new DrawMulti(
                         new DrawRegion("-bottom"),
-                        new DrawLiquidTile(Liquids.water),
-                        new DrawLiquidTile(Liquids.cryofluid){{drawLiquidLight = true;}},
+                        new DrawLiquidTile(FLiquids.AssociatedPetroleumGas),
+                        new DrawLiquidTile(FLiquids.resin){{drawLiquidLight = true;}},
                         new DrawDefault()
                 );
                 lightLiquid = FLiquids.resin;
@@ -188,8 +188,8 @@ public class FBlocks{
         }};
         PowerSubstation = new PowerNode("power-substation"){{
             size = 3;
-            maxNodes = 30;
-            laserRange = 15.5f;
+            maxNodes = 40;
+            laserRange = 16f;
             requirements(Category.power, with(Items.titanium, 10, Items.lead, 20, Items.silicon, 8, FItems.composite, 12, FItems.energy_ingot, 4));
         }};
 
@@ -197,7 +197,7 @@ public class FBlocks{
             size = 3;
             baseExplosiveness = 3f;
             consumePowerBuffered(65000f);
-            requirements(Category.power, with(Items.titanium, 40, Items.lead, 60, Items.silicon, 10, FItems.carbon_fiber, 15, FItems.energy_ingot, 10));
+            requirements(Category.power, with(Items.titanium, 40, Items.lead, 40, Items.silicon, 11, FItems.carbon_fiber, 11, FItems.energy_ingot, 11));
         }};
 
         ImprovedSolarPanel = new SolarGenerator("improved-solar-panel"){{

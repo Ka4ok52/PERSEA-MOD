@@ -1,11 +1,11 @@
 ﻿![Logo](assets/icon-logo.png)
 
 # F-MOD
-A java mod for testing and doing chaotic fun.
+A java mod for testing and doing chaotic fun. \
 Java мод для тестирования и хаотичного веселья.
 
 ## Version
-0.8_alpha107
+0.8_alpha107.1
 
 ## Author
 `Ka4ok52_`\

@@ -16,6 +16,6 @@ public class Fmod extends Mod{
         FItems.load();
         FLiquids.load();
         FBlocks.load();
-        //FUnits.load();
+        FUnitTypes.load();
     }
 }
