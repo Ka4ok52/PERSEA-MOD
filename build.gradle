@@ -1,10 +1,12 @@
 apply plugin: "java"
 
 version '1.0'
+sourceSets.main.java.srcDirs = ["src"]
 
-targetCompatibility = 8
-sourceCompatibility = JavaVersion.VERSION_17
-
+java{
+    targetCompatibility = 8
+    sourceCompatibility = JavaVersion.VERSION_17
+}
 sourceSets.main.java.srcDirs = ["src"]
 
 repositories{
@@ -29,6 +31,7 @@ allprojects{
 dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.MindustryJitpack:core:$mindustryVersion"
+    implementation "com.github.liplum:MultiCrafterLib:v1.7"
 
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
 }
@@ -46,7 +49,7 @@ task jarAndroid{
     dependsOn "jar"
 
     doLast{
-        if(!sdkRoot || !new File(sdkRoot).exists()) throw new GradleException("No valid Android SDK found. Ensure that ANDROID_HOME is set to your Android SDK directory.");
+        if(!sdkRoot || !new File(sdkRoot).exists()) throw new GradleException("No valid Android SDK found. Ensure that ANDROID_HOME is set to your Android SDK directory.")
 
         def platformRoot = new File("$sdkRoot/platforms/").listFiles().sort().reverse().find{ f -> new File(f, "android.jar").exists()}
 
@@ -57,7 +60,7 @@ task jarAndroid{
 
         //dex and desugar files - this requires d8 in your PATH
         "d8 $dependencies --min-api 14 --output ${project.archivesBaseName}Android.jar ${project.archivesBaseName}Desktop.jar"
-            .execute(null, new File("$buildDir/libs")).waitForProcessOutput(System.out, System.err)
+                .execute(null, new File("$buildDir/libs")).waitForProcessOutput(System.out, System.err)
     }
 }
 

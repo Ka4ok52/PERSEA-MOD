@@ -1,18 +1,20 @@
 ﻿![Logo](assets/icon-logo.png)
 
 # F-MOD
-A java mod for testing and doing chaotic fun. \
-Java мод для тестирования и хаотичного веселья.
+Java mod adds a new planet, units, factories, etc. This mod is still in development. May have problems! \
+Java мод добавляет новую планету, юнитов, заводов и т.д. Данный мод пока находится в разработке. Могут возникнуть проблемы!
+### Notation
+***Uses [liplum/MultiCrafterLib](https://github.com/liplum/MultiCrafterLib), though you don't need to install it into your client in order for this mod to work.***
 
 ## Version
-0.8_alpha107.1
+`2.0_alpha`
 
 ## Author
-`Ka4ok52_`\
-`Shesus`
+General coder:`Ka4ok52_`\
+General artist:`Shesus`
 
 ## Compiling
-JDK 17
+JDK 18
 
 ### Linux
 Build jar: `./gradlew jar`
