@@ -10,7 +10,11 @@ java{
 sourceSets.main.java.srcDirs = ["src"]
 
 repositories{
+    mavenLocal()
     mavenCentral()
+    google()
+    maven{ url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven{ url "https://oss.sonatype.org/content/repositories/releases/" }
     maven{ url 'https://www.jitpack.io' }
 }
 
@@ -55,7 +59,7 @@ task jarAndroid{
 
         if(!platformRoot) throw new GradleException("No android.jar found. Ensure that you have an Android platform installed.")
 
-        //collect dependencies needed for desugaring
+        //collect dependencies needed for de-sugaring
         def dependencies = (configurations.compileClasspath.asList() + configurations.runtimeClasspath.asList() + [new File(platformRoot, "android.jar")]).collect{ "--classpath $it.path" }.join(" ")
 
         //dex and desugar files - this requires d8 in your PATH

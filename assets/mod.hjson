@@ -1,8 +1,8 @@
-displayName: F-MOD
-name: fmod
+displayName: P.E.R.S.E.A. MOD
+name: persea
 author: Ka4ok52_ and Shesus
-description: Perhaps there will be something...
-main: fmod.Fmod
-version: 1.0_alpha110
-minGameVersion: 142
+description: You might be interested in taking a look...
+main: persea.PerseaMod
+version: 2.2_alpha
+minGameVersion: 143
 java: true
