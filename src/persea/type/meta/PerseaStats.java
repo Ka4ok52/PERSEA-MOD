@@ -1,4 +1,4 @@
-package persea.type.draw;
+package persea.type.meta;
 
 import mindustry.world.meta.*;
 

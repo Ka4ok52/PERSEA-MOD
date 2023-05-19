@@ -7,7 +7,7 @@ Java мод добавляет новую планету, юнитов, заво
 ***Uses [liplum/MultiCrafterLib](https://github.com/liplum/MultiCrafterLib), though you don't need to install it into your client in order for this mod to work.***
 
 ## Version
-`2.2_alpha`
+`2.2_alpha220.1`
 
 ## Author
 General coder:`Ka4ok52_`\

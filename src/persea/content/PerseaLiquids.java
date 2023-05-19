@@ -26,12 +26,13 @@ public class PerseaLiquids {
             viscosity = 0.9f;
         }};
         oilWaste = new Liquid("oil-waste", Color.valueOf("7a483f")) {{
-            temperature = 0.5f;
+            flammability = 0.02f;
+            temperature = 0.6f;
             heatCapacity = 0f;
             viscosity = 0.9f;
         }};
         resin = new Liquid("resin", Color.valueOf("946c00")) {{
-            flammability = 0.01f;
+            flammability = 0.0001f;
             temperature = 0.6f;
             viscosity = 0.8f;
         }};

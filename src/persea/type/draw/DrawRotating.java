@@ -22,6 +22,6 @@ public class DrawRotating extends DrawBlock {
             angle -= 360f;
         }
         Draw.z(Layer.block);
-        Draw.rect(rotating, build.x, build.y, rotating.width / 4.3f, rotating.height / 4.3f, angle);
+        Draw.rect(rotating, build.x, build.y, rotating.width / 4f, rotating.height / 4f, angle);
     }
 }

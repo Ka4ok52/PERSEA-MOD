@@ -1,8 +1,8 @@
 displayName: P.E.R.S.E.A. MOD
 name: persea
 author: Ka4ok52_ and Shesus
-description: You might be interested in taking a look...
+description: Mod add new plants also factories and turrets...
 main: persea.PerseaMod
-version: 2.2_alpha
+version: 2.2_alpha220.1
 minGameVersion: 143
 java: true

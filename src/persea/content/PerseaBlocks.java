@@ -2,10 +2,7 @@ package persea.content;
 
 import arc.graphics.Color;
 import arc.struct.Seq;
-import mindustry.content.Fx;
-import mindustry.content.Items;
-import mindustry.content.Liquids;
-import mindustry.content.StatusEffects;
+import mindustry.content.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.Sounds;
@@ -15,13 +12,12 @@ import mindustry.type.LiquidStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
-import mindustry.world.blocks.environment.Floor;
-import mindustry.world.blocks.environment.OreBlock;
-import mindustry.world.blocks.environment.StaticWall;
-import mindustry.world.blocks.environment.TreeBlock;
+import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.power.Battery;
+import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.power.SolarGenerator;
+import mindustry.world.blocks.production.AttributeCrafter;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.units.UnitFactory;
@@ -29,25 +25,27 @@ import mindustry.world.draw.*;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.BlockGroup;
 import mindustry.world.meta.BuildVisibility;
-import mindustry.world.meta.Env;
 import multicraft.IOEntry;
 import multicraft.MultiCrafter;
 import multicraft.Recipe;
 import persea.type.blocks.power.PerseaReactor;
 import persea.type.draw.DrawRotating;
+import persea.type.meta.PerseaAttribute;
+import persea.type.meta.PerseaEnv;
 
+import static mindustry.content.Blocks.shale;
 import static mindustry.type.ItemStack.with;
 
 public class PerseaBlocks {
     public static Block
     // Environment
-    dune,duneWall,thickets,thicketsWall,earth,earthWall,marble,marbleWall,granite,graniteWall,avocadoTree,avocadoBlock,
+    dune,duneWall,thickets,thicketsWall,earth,earthWall,marble,marbleWall,pallidMarbleWall,granite,polishedGraniteFloor,graniteWall,pallidGraniteWall,flowers,blueFlowers,avocadoTree,avocadoBlock,
     // Crafter and Smelter
     greenhouse,steamBoiler,oilRefinery,opticalFiberCrafter,cleaningReactionChamber,chemicalFactory,combustionChamber,carbonFiberCrafter,compositePress,nuclearCentrifuge,nuclearFurnace,
     //Rocket Crafter
     rocketBaseAssembler,rocketAssemblyPlant,
     //Power
-    reinforcedPowerNode,powerSubstation,carbonBattery,improvedSolarPanel,NuclearReactor,
+    reinforcedPowerNode,powerSubstation,carbonBattery,improvedSolarPanel,NuclearReactor,dieselGenerator,
     // Drill
     toxicDrill,
     // Walls
@@ -61,36 +59,58 @@ public class PerseaBlocks {
 
     public static void load() {
         //Environment
-        dune = new Floor("dune"){{variants = 4;}};
+        dune = new Floor("dune"){{
+            itemDrop = Items.sand;
+            playerUnmineable = true;
+            variants = 4;
+        }};
         duneWall = new StaticWall("dune-wall"){{attributes.set(Attribute.sand, 2f);}};
-        thickets = new Floor("thickets"){{variants = 4;}};
+        thickets = new Floor("thickets"){{
+            attributes.set(PerseaAttribute.prolific, 0.112f);
+            variants = 4;
+        }};
         thicketsWall = new StaticWall("thickets-wall");
         earth = new Floor("earth"){{variants = 4;}};
         earthWall = new StaticWall("earth-wall");
         marble = new Floor("marble"){{variants = 4;}};
         marbleWall = new StaticWall("marble-wall");
+        pallidMarbleWall = new StaticWall("pallid-marble-wall");
         granite = new Floor("granite"){{variants = 4;}};
+        polishedGraniteFloor = new Floor("polished-granite-floor"){{variants = 3;}};
         graniteWall = new StaticWall("granite-wall");
+        pallidGraniteWall = new StaticWall("pallid-granite-wall");
+        flowers = new Prop("flowers"){{
+            variants = 3;
+            shale.asFloor().decoration = this;
+        }};
+        blueFlowers = new Prop("blue-flowers"){{
+            variants = 3;
+            shale.asFloor().decoration = this;
+        }};
         avocadoTree = new TreeBlock("avocado-tree");
         avocadoBlock = new Wall("avocado-block"){{
-            requirements(Category.defense, BuildVisibility.sandboxOnly, with(PerseaItems.avocado, 2));
-            health = 60;
-            envDisabled |= Env.scorching;
+            requirements(Category.effect, BuildVisibility.sandboxOnly, with(PerseaItems.avocado, 4));
+            health = 69;
         }};
         // Crafter
-        greenhouse = new GenericCrafter("greenhouse"){{
+        greenhouse = new AttributeCrafter("greenhouse"){{
             size = 3;
-            craftTime = 200;
+            craftTime = 400;
             itemCapacity = 10;
             hasItems = true;
             hasLiquids = true;
             hasPower = true;
+            craftEffect = Fx.none;
+            envRequired |= PerseaEnv.prolific;
+            attribute = PerseaAttribute.prolific;
+            Blocks.grass.attributes.set(PerseaAttribute.prolific, 0.0556f);
+            maxBoost = 2f;
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),
                     new DrawRegion("-plants"),
                     new DrawRegion(),
                     new DrawGlowRegion(){{
-                        alpha = 0.7f;
+                        alpha = 0.6f;
                         color = Color.valueOf("ffe87c");
                         glowIntensity = 0.4f;
                         glowScale = 6f;
@@ -133,7 +153,7 @@ public class PerseaBlocks {
                         new DrawLiquidTile(Liquids.water),
                         new DrawLiquidTile(PerseaLiquids.steam, 2f){{drawLiquidLight = true;}},
                         new DrawGlowRegion(){{
-                            alpha = 0.6f;
+                            alpha = 0.5f;
                             color = Color.valueOf("cc0605");
                             glowIntensity = 0.5f;
                             glowScale = 5f;
@@ -185,7 +205,8 @@ public class PerseaBlocks {
                         new DrawLiquidTile(PerseaLiquids.masut),
                         new DrawLiquidTile(PerseaLiquids.resin),
                         new DrawArcSmelt(),
-                        new DrawDefault()
+                        new DrawDefault(),
+                        new DrawLiquidOutputs()
                 );
                 lightLiquid = PerseaLiquids.masut;
                 liquidOutputDirections = new int[]{1, 3};
@@ -230,7 +251,7 @@ public class PerseaBlocks {
                         new DrawDefault(),
                         new DrawFlame(),
                         new DrawGlowRegion(){{
-                            alpha = 0.6f;
+                            alpha = 0.5f;
                             color = Color.valueOf("ff4f00");
                             glowIntensity = 0.4f;
                             glowScale = 7f;
@@ -251,6 +272,15 @@ public class PerseaBlocks {
                 itemCapacity = 10;
                 size = 2;
                 craftEffect = Fx.pulverizeMedium;
+                drawer = new DrawMulti(
+                        new DrawRegion(),
+                        new DrawGlowRegion(){{
+                            alpha = 0.7f;
+                            color = Color.valueOf("cc0605");
+                            glowIntensity = 0.8f;
+                            glowScale = 6f;
+                        }}
+                );
 
                 outputItem = new ItemStack(PerseaItems.carbonFiber, 1);
 
@@ -317,6 +347,15 @@ public class PerseaBlocks {
             hasPower = true;
             itemCapacity = 80;
             craftEffect = Fx.smeltsmoke;
+            drawer = new DrawMulti(
+                    new DrawRegion(),
+                    new DrawRegion("-form"),
+                    new DrawGlowRegion(){{
+                        color = Color.valueOf("adfffb");
+                        glowIntensity = 0.3f;
+                        glowScale = 4f;
+                    }}
+            );
             resolvedRecipes = Seq.with(
                 //Rocket base recipe
                 new Recipe(
@@ -426,7 +465,7 @@ public class PerseaBlocks {
                     600f
                 )
             );
-            requirements(Category.effect, with(PerseaItems.composite, 40, Items.silicon, 60, Items.titanium, 100, Items.surgeAlloy, 20));
+            requirements(Category.effect, with(PerseaItems.composite, 80, Items.silicon, 120, Items.titanium, 200, Items.surgeAlloy, 40));
             consumePower(4f);
         }};
         //Power
@@ -450,8 +489,8 @@ public class PerseaBlocks {
         }};
         improvedSolarPanel = new SolarGenerator("improved-solar-panel"){{
             size = 4;
-            powerProduction = 2f;
-            requirements(Category.power, with(Items.lead, 40, Items.titanium, 30, Items.silicon, 30, Items.phaseFabric, 15, PerseaItems.energyIngot, 15));
+            powerProduction = 4f;
+            requirements(Category.power, with(Items.lead, 40, Items.titanium, 30, Items.silicon, 80, Items.phaseFabric, 15, PerseaItems.energyIngot, 15));
         }};
         NuclearReactor = new PerseaReactor("nuclear-reactor"){{
             requirements(Category.power, with(Items.titanium, 300, Items.silicon, 250, Items.plastanium, 100, PerseaItems.carbonFiber, 100, PerseaItems.composite, 50, Items.metaglass, 50));
@@ -460,11 +499,28 @@ public class PerseaBlocks {
             size = 3;
             health = 800;
             itemDuration = 360f;
-            powerProduction = 20f;
+            powerProduction = 24f;
             heating = 0.02f;
 
             consumeItem(PerseaItems.enrichedThorium);
             consumeLiquid(Liquids.cryofluid, heating / coolantPower).update(false);
+        }};
+        dieselGenerator = new ConsumeGenerator("diesel-generator"){{
+            size = 2;
+            powerProduction = 8f;
+            drawer = new DrawMulti(
+                    new DrawRegion(),
+                    new DrawGlowRegion(){{
+                        color = Color.valueOf("cc0605");
+                        glowIntensity = 0.3f;
+                        glowScale = 6f;
+                    }}
+            );
+            ambientSound = Sounds.smelter;
+            generateEffect = Fx.generatespark;
+
+            consumeLiquid(Liquids.oil, 0.1f);
+            requirements(Category.power, with(Items.lead, 60, Items.silicon, 20, Items.titanium, 20, PerseaItems.fiberglass, 10));
         }};
         // Drill
         toxicDrill = new Drill("toxicDrill-drill") {{
@@ -561,6 +617,7 @@ public class PerseaBlocks {
                             lifetime = 60f;
                         }}
                 );
+                coolant = consumeCoolant(0.1f);
                 limitRange();
                 requirements(Category.turret, with(Items.copper, 35, Items.lead, 15, PerseaItems.composite, 15), true);
         }};
