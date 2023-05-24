@@ -32,18 +32,16 @@ public class PerseaFx {
                 Lines.circle(e.x, e.y, e.fin() * 5f);
                 Drawf.light(e.x, e.y, 23f, PerseaPal.toxicGreen, e.fout() * 0.7f);
             }),
-            impulse = new Effect(120, e -> {
+            radioImpulse = new Effect(120, e -> {
                 float radius = 4f + e.fin() * 12f;
                 color(PerseaPal.flash);
                 stroke(2f - e.fin() * 2f);
                 Lines.circle(e.x, e.y, radius);
-            });
-            /*
-            impulse = new Effect(120, e -> {
-                float radius = 5f + e.fin() * 12f;
-                color(PerseaPal.flash);
-                stroke(3f - e.fin() * 2f);
+            }),
+            forming = new Effect(60, e -> {
+                float radius = 4f + e.fin() * 6f;
+                color(PerseaPal.making);
+                stroke(2f - e.fin() * 2f);
                 Lines.circle(e.x, e.y, radius);
             });
-             */
 }

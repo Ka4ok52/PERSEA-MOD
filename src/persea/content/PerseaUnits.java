@@ -9,7 +9,7 @@ import mindustry.world.meta.*;
 
 public class PerseaUnits {
     public static UnitType
-            //Test Unit
+            //Support Unit
             sanchel, nayasit,
             //Toxic Unit
             gecko, scarab;
@@ -34,8 +34,8 @@ public class PerseaUnits {
 
             weapons.add(new Weapon("persea-gecko-missiles"){{
                 reload = 40f;
-                x = 4f;
-                y = 0f;
+                x = 3f; // горизонталь
+                y = -2.5f; //вертикаль
                 rotate = true;
                 shake = 1f;
                 shoot.shots = 2;
@@ -65,8 +65,8 @@ public class PerseaUnits {
 
             weapons.add(new Weapon("persea-scarab-missiles"){{
                 reload = 40f;
-                x = 7f;
-                y = -1f;
+                x = 4.5f;
+                y = -2f;
                 rotate = true;
                 shake = 1f;
                 shoot.shots = 2;

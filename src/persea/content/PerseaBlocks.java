@@ -5,6 +5,7 @@ import arc.struct.Seq;
 import mindustry.content.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.pattern.ShootAlternate;
+import mindustry.gen.Building;
 import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -21,6 +22,7 @@ import mindustry.world.blocks.production.AttributeCrafter;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.units.UnitFactory;
+import mindustry.world.consumers.ConsumeLiquidFlammable;
 import mindustry.world.draw.*;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.BlockGroup;
@@ -45,7 +47,7 @@ public class PerseaBlocks {
     //Rocket Crafter
     rocketBaseAssembler,rocketAssemblyPlant,
     //Power
-    reinforcedPowerNode,powerSubstation,carbonBattery,improvedSolarPanel,NuclearReactor,dieselGenerator,
+    reinforcedPowerNode,powerSubstation,carbonBattery,improvedSolarPanel,dieselGenerator,steamTurbine,gasGenerator,NuclearReactor,
     // Drill
     toxicDrill,
     // Walls
@@ -53,7 +55,7 @@ public class PerseaBlocks {
     // Turrets
     testDuo,bigDuo,
     //Unit fabric
-    advancedAirBellowsFactory,advancedHeavyEquipmentFactory,
+    advancedAirBellowsFactory,//advancedHeavyEquipmentFactory,
     // Ores
     oreCryEnergy;
 
@@ -134,8 +136,15 @@ public class PerseaBlocks {
                         new DrawRegion("-bottom"),
                         new DrawLiquidTile(Liquids.oil, 2f),
                         new DrawRegion(),
+                        new DrawGlowRegion(){{
+                            alpha = 0.6f;
+                            color = Color.valueOf("7c539e");
+                            glowIntensity = 0.2f;
+                            glowScale = 3f;
+                        }},
                         new DrawLiquidOutputs()
                 );
+                craftEffect = Fx.smoke;
                 group = BlockGroup.liquids;
 
                 outputLiquids = LiquidStack.with(PerseaLiquids.associatedPetroleumGas, 0.5f, PerseaLiquids.masut, 0.25f);
@@ -148,6 +157,10 @@ public class PerseaBlocks {
         steamBoiler = new GenericCrafter("steam-boiler") {{
                 size = 2;
                 craftTime = 80;
+                hasLiquids = true;
+                hasPower = true;
+                solid = true;
+                outputsLiquid = true;
                 drawer = new DrawMulti(
                         new DrawRegion("-bottom"),
                         new DrawLiquidTile(Liquids.water),
@@ -160,10 +173,6 @@ public class PerseaBlocks {
                         }},
                         new DrawDefault()
                 );
-                hasLiquids = true;
-                hasPower = true;
-                solid = true;
-                outputsLiquid = true;
                 updateEffect = Fx.steam;
                 updateEffectChance = 0.05f;
                 ambientSound = Sounds.electricHum;
@@ -200,6 +209,7 @@ public class PerseaBlocks {
                 solid = true;
                 outputsLiquid = true;
                 size = 2;
+                liquidOutputDirections = new int[]{1, 3};
                 drawer = new DrawMulti(
                         new DrawRegion("-bottom"),
                         new DrawLiquidTile(PerseaLiquids.masut),
@@ -209,7 +219,6 @@ public class PerseaBlocks {
                         new DrawLiquidOutputs()
                 );
                 lightLiquid = PerseaLiquids.masut;
-                liquidOutputDirections = new int[]{1, 3};
 
                 outputLiquids = LiquidStack.with(PerseaLiquids.resin, 0.25f, PerseaLiquids.oilWaste, 0.25f);
 
@@ -312,10 +321,10 @@ public class PerseaBlocks {
                 hasPower = true;
                 drawer = new DrawMulti(
                         new DrawRegion("-bottom"),
-                        new DrawRotating(),
+                        new DrawRotating(3f),
                         new DrawDefault()
                 );
-                craftEffect = PerseaFx.impulse;
+                craftEffect = PerseaFx.radioImpulse;
 
                 outputItem = new ItemStack(PerseaItems.enrichedThorium, 1);
 
@@ -390,7 +399,16 @@ public class PerseaBlocks {
             itemCapacity = 60;
             hasItems = true;
             hasPower = true;
-            craftEffect = Fx.smeltsmoke;
+            craftEffect = PerseaFx.forming;
+            drawer = new DrawMulti(
+                    new DrawRegion(),
+                    new DrawGlowRegion(){{
+                        alpha = 0.9f;
+                        color = Color.valueOf("f3c300");
+                        glowIntensity = 0.8f;
+                        glowScale = 10f;
+                    }}
+            );
             resolvedRecipes = Seq.with(
                 //Incendiary rocket recipe
                 new Recipe(
@@ -492,19 +510,6 @@ public class PerseaBlocks {
             powerProduction = 4f;
             requirements(Category.power, with(Items.lead, 40, Items.titanium, 30, Items.silicon, 80, Items.phaseFabric, 15, PerseaItems.energyIngot, 15));
         }};
-        NuclearReactor = new PerseaReactor("nuclear-reactor"){{
-            requirements(Category.power, with(Items.titanium, 300, Items.silicon, 250, Items.plastanium, 100, PerseaItems.carbonFiber, 100, PerseaItems.composite, 50, Items.metaglass, 50));
-            ambientSound = Sounds.hum;
-            ambientSoundVolume = 0.24f;
-            size = 3;
-            health = 800;
-            itemDuration = 360f;
-            powerProduction = 24f;
-            heating = 0.02f;
-
-            consumeItem(PerseaItems.enrichedThorium);
-            consumeLiquid(Liquids.cryofluid, heating / coolantPower).update(false);
-        }};
         dieselGenerator = new ConsumeGenerator("diesel-generator"){{
             size = 2;
             powerProduction = 8f;
@@ -521,6 +526,58 @@ public class PerseaBlocks {
 
             consumeLiquid(Liquids.oil, 0.1f);
             requirements(Category.power, with(Items.lead, 60, Items.silicon, 20, Items.titanium, 20, PerseaItems.fiberglass, 10));
+        }};
+        steamTurbine = new ConsumeGenerator("steam-turbine"){{
+            size = 2;
+            powerProduction = 12f;
+            drawer = new DrawMulti(
+                    new DrawRegion(),
+                    new DrawRegion(){{
+                        suffix = "-rotating";
+                        rotateSpeed = 8f;
+                        spinSprite = true;
+                    }}
+            );
+            ambientSound = Sounds.smelter;
+            generateEffect = Fx.smoke;
+            consumeLiquid(PerseaLiquids.steam, 0.25f);
+            requirements(Category.power, with(Items.lead, 80, Items.silicon, 30, Items.titanium, 20, Items.metaglass, 10));
+        }};
+        gasGenerator = new ConsumeGenerator("gas-generator"){{
+            size = 3;
+            powerProduction = 20f;
+            drawer = new DrawMulti(
+                    new DrawRegion(),
+                    new DrawRegion(){{
+                        suffix = "-rotating";
+                        rotateSpeed = 9f;
+                        spinSprite = true;
+                    }}
+            );
+            ambientSound = Sounds.torch;
+            generateEffect = Fx.smoke;
+
+            consume(new ConsumeLiquidFlammable(){
+                @Override
+                public float efficiencyMultiplier(Building build) {
+                    var liquidGas = getConsumed(build);
+                    return liquidGas != null && liquidGas.gas ? liquidGas.flammability : 0f;
+                }
+            });
+            requirements(Category.power, with(Items.lead, 300, Items.titanium, 200, Items.silicon, 100, Items.metaglass, 50, PerseaItems.composite, 50));
+        }};
+        NuclearReactor = new PerseaReactor("nuclear-reactor"){{
+            ambientSound = Sounds.hum;
+            ambientSoundVolume = 0.24f;
+            size = 3;
+            health = 800;
+            itemDuration = 360f;
+            powerProduction = 24f;
+            heating = 0.02f;
+
+            consumeItem(PerseaItems.enrichedThorium);
+            consumeLiquid(Liquids.cryofluid, heating / coolantPower).update(false);
+            requirements(Category.power, with(Items.titanium, 300, Items.silicon, 250, Items.plastanium, 100, Items.metaglass, 50, PerseaItems.carbonFiber, 100, PerseaItems.composite, 50));
         }};
         // Drill
         toxicDrill = new Drill("toxicDrill-drill") {{

@@ -26,7 +26,7 @@ public class PerseaLiquids {
             viscosity = 0.9f;
         }};
         oilWaste = new Liquid("oil-waste", Color.valueOf("7a483f")) {{
-            flammability = 0.02f;
+            flammability = 0.002f;
             temperature = 0.6f;
             heatCapacity = 0f;
             viscosity = 0.9f;
