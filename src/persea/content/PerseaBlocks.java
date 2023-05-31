@@ -40,27 +40,27 @@ import static mindustry.type.ItemStack.with;
 
 public class PerseaBlocks {
     public static Block
-    // Environment
-    dune,duneWall,thickets,thicketsWall,earth,earthWall,marble,marbleWall,pallidMarbleWall,granite,polishedGraniteFloor,graniteWall,pallidGraniteWall,flowers,blueFlowers,avocadoTree,avocadoBlock,
-    // Crafter and Smelter
+    //Environment
+    dune,duneWall,thickets,thicketsWall,earth,earthWall,marble,marbleWall,pallidMarbleWall,granite,graniteWall,polishedGraniteFloor,pallidGraniteWall,avocadoTree,smallAvocadoTree,bloomingAvocadoTree,deadTreeAvocado,smallDeadTreeAvocado,flowers,blueFlowers,avocadoBlock,
+    //Crafter and Smelter
     greenhouse,steamBoiler,oilRefinery,opticalFiberCrafter,cleaningReactionChamber,chemicalFactory,combustionChamber,carbonFiberCrafter,compositePress,nuclearCentrifuge,nuclearFurnace,
     //Rocket Crafter
     rocketBaseAssembler,rocketAssemblyPlant,
     //Power
     reinforcedPowerNode,powerSubstation,carbonBattery,improvedSolarPanel,dieselGenerator,steamTurbine,gasGenerator,NuclearReactor,
-    // Drill
+    //Drill
     toxicDrill,
-    // Walls
+    //Walls
     compositeWall,largeCompositeWall,energyWall,largeEnergyWall,
-    // Turrets
-    testDuo,bigDuo,
+    //Turrets
+    testDuo,bigDuo,pizdecBigDuo,
     //Unit fabric
     advancedAirBellowsFactory,//advancedHeavyEquipmentFactory,
-    // Ores
+    //Ores
     oreCryEnergy;
 
     public static void load() {
-        //Environment
+        //Environment and Floor
         dune = new Floor("dune"){{
             itemDrop = Items.sand;
             playerUnmineable = true;
@@ -78,9 +78,14 @@ public class PerseaBlocks {
         marbleWall = new StaticWall("marble-wall");
         pallidMarbleWall = new StaticWall("pallid-marble-wall");
         granite = new Floor("granite"){{variants = 4;}};
-        polishedGraniteFloor = new Floor("polished-granite-floor"){{variants = 3;}};
         graniteWall = new StaticWall("granite-wall");
+        polishedGraniteFloor = new Floor("polished-granite-floor"){{variants = 3;}};
         pallidGraniteWall = new StaticWall("pallid-granite-wall");
+        avocadoTree = new TreeBlock("avocado-tree");
+        smallAvocadoTree = new TreeBlock("small-avocado-tree");
+        bloomingAvocadoTree = new TreeBlock("blooming-avocado-tree");
+        deadTreeAvocado = new TreeBlock("dead-tree-avocado");
+        smallDeadTreeAvocado = new TreeBlock("small-dead-tree-avocado");
         flowers = new Prop("flowers"){{
             variants = 3;
             shale.asFloor().decoration = this;
@@ -89,13 +94,13 @@ public class PerseaBlocks {
             variants = 3;
             shale.asFloor().decoration = this;
         }};
-        avocadoTree = new TreeBlock("avocado-tree");
         avocadoBlock = new Wall("avocado-block"){{
             requirements(Category.effect, BuildVisibility.sandboxOnly, with(PerseaItems.avocado, 4));
             health = 69;
         }};
-        // Crafter
+        //Crafter
         greenhouse = new AttributeCrafter("greenhouse"){{
+            //TODO do growth stages to plants
             size = 3;
             craftTime = 400;
             itemCapacity = 10;
@@ -561,6 +566,7 @@ public class PerseaBlocks {
                 @Override
                 public float efficiencyMultiplier(Building build) {
                     var liquidGas = getConsumed(build);
+                    //TODO fix the bug later
                     return liquidGas != null && liquidGas.gas ? liquidGas.flammability : 0f;
                 }
             });
@@ -579,7 +585,7 @@ public class PerseaBlocks {
             consumeLiquid(Liquids.cryofluid, heating / coolantPower).update(false);
             requirements(Category.power, with(Items.titanium, 300, Items.silicon, 250, Items.plastanium, 100, Items.metaglass, 50, PerseaItems.carbonFiber, 100, PerseaItems.composite, 50));
         }};
-        // Drill
+        //Drill
         toxicDrill = new Drill("toxicDrill-drill") {{
                 drillTime = 4000;
                 size = 3;
@@ -593,7 +599,7 @@ public class PerseaBlocks {
                 consumePower(1.10f);
                 consumeLiquid(PerseaLiquids.catalyst, 0.25f).boost();
         }};
-        // Turrets
+        //Turrets
         testDuo = new ItemTurret("test-duo") {{
                 shoot = new ShootAlternate(3.5f);
                 shootY = 3f;
@@ -629,6 +635,42 @@ public class PerseaBlocks {
                 );
                 limitRange();
                 requirements(Category.turret, with(PerseaItems.composite, 15), true);
+        }};
+        pizdecBigDuo = new ItemTurret("pizdec-gun") {{
+            shoot = new ShootAlternate(4f);
+            shootY = 3f;
+            reload = 16f;
+            range = 690;
+            health = 3500;
+            inaccuracy = 2f;
+            rotateSpeed = 10f;
+            ammoUseEffect = Fx.casing2;
+            size = 8;
+
+            ammo(
+                    Items.copper,  new BasicBulletType(3f, 69){{
+                        width = 7f;
+                        height = 9f;
+                        lifetime = 60f;
+                        ammoMultiplier = 2;
+                    }},
+                    PerseaItems.avocado, new BasicBulletType(3f,420){{
+                        width = 7f;
+                        height = 9f;
+                        lifetime = 60f;
+                        status = PerseaStatuses.corrosion;
+                        statusDuration = 60f*12f;
+                    }},
+                    Items.graphite, new BasicBulletType(4f, 69420){{
+                        width = 9f;
+                        height = 12f;
+                        reloadMultiplier = 0.6f;
+                        ammoMultiplier = 4;
+                        lifetime = 80f;
+                    }}
+            );
+            limitRange();
+            requirements(Category.turret, with(PerseaItems.composite, 15), true);
         }};
         bigDuo = new ItemTurret("big-duo") {{
                 shoot = new ShootAlternate(4f);
@@ -688,7 +730,7 @@ public class PerseaBlocks {
             consumePower(1.6f);
             requirements(Category.units, with( Items.lead, 80, Items.titanium, 40, Items.silicon, 30));
         }};
-        // Walls
+        //Walls
         compositeWall = new Wall("composite-wall") {{
                 health = 960;
                 size = 1;
