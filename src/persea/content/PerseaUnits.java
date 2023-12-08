@@ -1,20 +1,69 @@
 package persea.content;
 
-import mindustry.content.*;
-import mindustry.entities.bullet.*;
-import mindustry.gen.*;
-import mindustry.type.*;
-import mindustry.type.ammo.*;
-import mindustry.world.meta.*;
+import mindustry.ai.UnitCommand;
+import mindustry.ai.types.BuilderAI;
+import mindustry.ai.types.MinerAI;
+import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.entities.bullet.BasicBulletType;
+import mindustry.gen.Sounds;
+import mindustry.gen.UnitEntity;
+import mindustry.type.UnitType;
+import mindustry.type.Weapon;
+import mindustry.type.ammo.ItemAmmoType;
+import mindustry.type.ammo.PowerAmmoType;
+import mindustry.world.meta.BlockFlag;
 
 public class PerseaUnits {
     public static UnitType
+            //Core Unit
+            omega,
+            //Flying Specialists
+            gecko,scarab,draugr,
             //Support Unit
-            sanchel, nayasit,
-            //Toxic Unit
-            gecko, scarab;
+            philetaeus;
     public static void load(){
-        //Toxic Unit
+        //Core Unit
+        omega = new UnitType("omega"){{
+            aiController = BuilderAI::new;
+            isEnemy = false;
+
+            lowAltitude = true;
+            flying = true;
+            mineSpeed = 6.5f;
+            mineTier = 3;
+            buildSpeed = 0.5f;
+            drag = 0.05f;
+            speed = 4f;
+            rotateSpeed = 15f;
+            accel = 0.1f;
+            fogRadius = 0f;
+            itemCapacity = 30;
+            health = 240;
+            engineOffset = 6f;
+            hitSize = 10f;
+            alwaysUnlocked = true;
+
+            weapons.add(new Weapon("persea-omega-weapon"){{
+                shootY = -0.1f;
+                reload = 14f;
+                x = -4.5f;
+                y = -2f;
+                top = false;
+                ejectEffect = Fx.casing1;
+
+                bullet = new BasicBulletType(2.5f, 12){{
+                    width = 7f;
+                    height = 9f;
+                    lifetime = 60f;
+                    shootEffect = Fx.shootSmall;
+                    smokeEffect = Fx.shootSmallSmoke;
+                    buildingDamageMultiplier = 0.01f;
+                }};
+            }});
+            constructor = UnitEntity::create;
+        }};
+        //Flying Specialists
         gecko = new UnitType("gecko"){{
             health = 300;
             speed = 2.3f;
@@ -34,8 +83,8 @@ public class PerseaUnits {
 
             weapons.add(new Weapon("persea-gecko-missiles"){{
                 reload = 40f;
-                x = 3f; // горизонталь
-                y = -2.5f; //вертикаль
+                x = 3f;
+                y = -2.5f;
                 rotate = true;
                 shake = 1f;
                 shoot.shots = 2;
@@ -47,13 +96,13 @@ public class PerseaUnits {
             constructor = UnitEntity::create;
         }};
         scarab = new UnitType("scarab"){{
-            health = 800;
+            health = 700;
             speed = 2.3f;
             accel = 0.04f;
             drag = 0.016f;
             flying = true;
             range = 140f;
-            hitSize = 18f;
+            hitSize = 17f;
             lowAltitude = true;
             forceMultiTarget = true;
             armor = 5f;
@@ -67,7 +116,6 @@ public class PerseaUnits {
                 reload = 40f;
                 x = 4.5f;
                 y = -2f;
-                rotate = true;
                 shake = 1f;
                 shoot.shots = 2;
                 inaccuracy = 5f;
@@ -77,67 +125,37 @@ public class PerseaUnits {
             }});
             constructor = UnitEntity::create;
         }};
-        sanchel = new UnitType("sanchel"){{
-            //Sich-Elf
+        draugr = new UnitType("draugr"){{
             speed = 3f;
             accel = 0.08f;
             drag = 0.04f;
             flying = true;
-            health = 100;
+            health = 1400;
             engineOffset = 5.75f;
-            targetFlags = new BlockFlag[]{BlockFlag.generator, null};
-            hitSize = 9;
-            itemCapacity = 12;
-            mineTier = 2;
-            mineSpeed = 2.5f;
-            weapons.add(new Weapon(){{
-                y = 0f;
-                x = 2f;
-                reload = 22f;
-                ejectEffect = Fx.casing1;
-                bullet = new BasicBulletType(3f, 10){{
-                    width = 7f;
-                    height = 9f;
-                    lifetime = 45f;
-                    shootEffect = Fx.shootSmall;
-                    smokeEffect = Fx.shootSmallSmoke;
-                    ammoMultiplier = 2;
-                }};
-                shootSound = Sounds.pew;
-            }});
+            hitSize = 24;
+            itemCapacity = 20;
             constructor = UnitEntity::create;
         }};
-        nayasit = new UnitType("nayasit"){{
-            //Tawny Owl
+        //Support Unit
+        philetaeus = new UnitType("philetaeus"){{
+            controller = u -> new MinerAI();
+
+            defaultCommand = UnitCommand.mineCommand;
+
             flying = true;
-            drag = 0.05f;
-            speed = 3f;
-            rotateSpeed = 15f;
-            accel = 0.1f;
-            range = 130f;
-            health = 420;
-            buildSpeed = 0.5f;
-            engineOffset = 6.5f;
-            hitSize = 9f;
-            lowAltitude = true;
-            itemCapacity = 20;
-            mineTier = 2;
-            mineSpeed = 3.5f;
-            weapons.add(new Weapon(){{
-                y = 0f;
-                x = 3f;
-                reload = 20f;
-                ejectEffect = Fx.casing1;
-                bullet = new BasicBulletType(3f, 12){{
-                    width = 7f;
-                    height = 9f;
-                    lifetime = 45f;
-                    shootEffect = Fx.shootSmall;
-                    smokeEffect = Fx.shootSmallSmoke;
-                    ammoMultiplier = 2;
-                }};
-                shootSound = Sounds.pew;
-            }});
+            drag = 0.06f;
+            accel = 0.12f;
+            speed = 1.5f;
+            health = 100;
+            engineSize = 1.8f;
+            engineOffset = 5.7f;
+            range = 50f;
+            isEnemy = false;
+
+            ammoType = new PowerAmmoType(500);
+
+            mineTier = 3;
+            mineSpeed = 3f;
             constructor = UnitEntity::create;
         }};
     }

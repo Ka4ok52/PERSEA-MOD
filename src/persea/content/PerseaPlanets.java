@@ -1,43 +1,40 @@
 package persea.content;
 
-import arc.graphics.*;
-import mindustry.content.*;
-import mindustry.graphics.g3d.*;
-import mindustry.maps.planet.*;
-import mindustry.type.*;
+import arc.graphics.Color;
+import mindustry.content.Planets;
+import mindustry.graphics.g3d.HexMesh;
+import mindustry.graphics.g3d.HexSkyMesh;
+import mindustry.graphics.g3d.MultiMesh;
+import mindustry.type.Planet;
+import persea.graphics.PerseaPal;
+import persea.maps.generators.PerseaPlanetGenerator;
 
-/*
-import static fmod.content.FBlocks.*;
-import static fmod.content.FItems.*;
-*/
+import static mindustry.content.Blocks.*;
 
 public class PerseaPlanets {
     public static Planet persea;
     public static void load(){
         persea = new Planet("persea", Planets.sun, 1, 3){{
-            generator = new SerpuloPlanetGenerator();
-            bloom = true;
-            visible = true;
-            hasAtmosphere = true;
+            generator = new PerseaPlanetGenerator();
+            meshLoader = () -> new HexMesh(this, 6);
+            cloudMeshLoader = () -> new MultiMesh(
+                    new HexSkyMesh(this, 11, 0.15f, 0.13f, 5, new Color().set(PerseaPal.clouds).mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
+                    new HexSkyMesh(this, 1, 0.6f, 0.16f, 5, Color.valueOf("0080ff").cpy().lerp(PerseaPal.clouds, 0.55f).a(0.75f), 2, 0.45f, 1f, 0.41f)
+            );
+            ruleSetter = r34 -> {
+                r34.bannedBlocks.addAll(thoriumWall, thoriumWallLarge, surgeWall, surgeWallLarge);
+                r34.hideBannedBlocks = true;
+            };
+            iconColor = Color.valueOf("3298fc");
+            atmosphereColor = Color.valueOf("014180");
             alwaysUnlocked = true;
             allowWaves = true;
-            accessible = false;
             allowWaveSimulation = true;
             allowSectorInvasion = true;
             allowLaunchSchematics = true;
             enemyCoreSpawnReplace = true;
             allowLaunchLoadout = true;
-            meshLoader = () -> new SunMesh(
-                    this, 4,
-                    3, 0.7, 1.9, 1.4, 1.6,
-                    1.1f,
-                    Color.valueOf("a9a39f"),
-                    Color.valueOf("b5afaa"),
-                    Color.valueOf("b5afaa"),
-                    Color.valueOf("c1c7c1"),
-                    Color.valueOf("f1f9f1"),
-                    Color.valueOf("d7ded7")
-            );
+            itemWhitelist.addAll(PerseaItems.perseaItems);
         }};
     }
 }

@@ -1,125 +1,80 @@
 package persea.content;
 
 import arc.graphics.*;
+import arc.struct.Seq;
 import mindustry.type.*;
+
+import static mindustry.content.Items.*;
 
 public class PerseaItems {
     public static Item
     //Item
-    avocado, carbon, carbonFiber, fiberglass, composite, enrichedThorium, energyIngot,
+    aluminum, cobalt, cobaltglass, tantalum, energyCrystal, carbon, carbonFiber, fiberglass, composite, enrichedThorium, energyAlloy, avocado,
     //Rocket
-    rocketBase, advancedRocketBase, incendiaryRocket, explosiveRocket, fragBomb, rocketEMP, fragBombPro, nuclearRocket,
-    //Ore Item
-    cryEnergyRaw;
+    incendiaryRocket, explosiveRocket, fragBomb, rocketEMP, nuclearRocket;
+
+    public static final Seq<Item> perseaItems = new Seq<>();
+
     public static void load(){
         //Item
-        avocado = new Item("avocado",Color.valueOf("30942c")){{
+        aluminum = new Item("aluminum",Color.valueOf("808f95")){{
             alwaysUnlocked = true;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
+            cost = 0.5f;
+            hardness = 2;
         }};
-        carbon = new Item("carbon",Color.valueOf("1a1919")){{
-            alwaysUnlocked = true;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
+        cobalt = new Item("cobalt",Color.valueOf("4456dc")){{
+            cost = 0.7f;
+            hardness = 3;
         }};
-        carbonFiber = new Item("carbon-fiber",Color.valueOf("313131")){{
-            alwaysUnlocked = true;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
+        cobaltglass = new Item("cobaltglass", Color.valueOf("d5eeff")){{cost = 1.5f;}};
+        tantalum = new Item("tantalum",Color.valueOf("07ab8a")){{
+            hardness = 4;
+            cost = 1f;
         }};
-        fiberglass = new Item("fiberglass",Color.valueOf("999999")){{
-            alwaysUnlocked = true;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
+        energyCrystal = new Item("crystal-energy",Color.valueOf("fabf37")){{
+            cost = 0.7f;
+            hardness = 5;
+            charge = 0.5f;
         }};
-        composite = new Item("composite",Color.valueOf("272626")){{
-            alwaysUnlocked = true;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
-        }};
+        carbon = new Item("carbon",Color.valueOf("1a1919")){{cost = 1.0f;}};
+        carbonFiber = new Item("carbon-fiber",Color.valueOf("313131")){{cost = 1.2f;}};
+        fiberglass = new Item("fiberglass",Color.valueOf("999999")){{cost = 1.2f;}};
+        composite = new Item("composite",Color.valueOf("272626")){{cost = 1.5f;}};
         enrichedThorium = new Item("enriched-thorium",Color.valueOf("ff9db9")) {{
-            alwaysUnlocked = true;
             radioactivity = 2f;
             charge = 0.5f;
         }};
-        energyIngot = new Item("energy-ingot",Color.valueOf("ffcd66")){{
-            alwaysUnlocked = true;
-            charge = 1.2f;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
-        }};
+        energyAlloy = new Item("energy-ingot",Color.valueOf("ffcd66")){{charge = 1.2f;}};
+        avocado = new Item("avocado",Color.valueOf("30942c")){{alwaysUnlocked = true;}};
         //Rocket
-        rocketBase = new Item("rocket-base",Color.valueOf("112233")){{
-            alwaysUnlocked = true;
-            charge = 0.2f;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
-        }};
-        advancedRocketBase = new Item("advanced-rocket-base"){{
-            alwaysUnlocked = true;
-            charge = 0.3f;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
-        }};
         incendiaryRocket = new Item("incendiary-rocket"){{
             alwaysUnlocked = true;
             charge = 0.5f;
-            explosiveness = 0;
             flammability = 2;
-            radioactivity = 0;
         }};
         explosiveRocket = new Item("explosive-rocket",Color.valueOf("112233")){{
             alwaysUnlocked = true;
             charge = 0.5f;
             explosiveness = 2;
-            flammability = 0;
-            radioactivity = 0;
         }};
         fragBomb = new Item("frag-bomb"){{
             alwaysUnlocked = true;
             charge = 0.5f;
             explosiveness = 0.3f;
-            flammability = 0;
-            radioactivity = 0;
         }};
         rocketEMP = new Item("rocket-emp",Color.valueOf("112233")){{
             alwaysUnlocked = true;
             charge = 2;
-            explosiveness = 0;
-            flammability = 0;
-            radioactivity = 0;
-        }};
-        fragBombPro = new Item("frag-bomb-pro"){{
-            alwaysUnlocked = true;
-            charge = 0.6f;
-            explosiveness = 0.3f;
-            flammability = 0;
-            radioactivity = 0;
         }};
         nuclearRocket = new Item("nuclear-rocket",Color.valueOf("112233")){{
             alwaysUnlocked = true;
             charge = 0.6f;
-            explosiveness = 0.4f;
-            flammability = 0;
+            explosiveness = 0.5f;
             radioactivity = 2;
         }};
-        //Ore Item
-        cryEnergyRaw = new Item("ore-crystal-energy",Color.valueOf("fabf37")){{
-            cost = 0.3f;
-            hardness = 5;
-            charge = 0.5f;
-            radioactivity = 0;
-            flammability = 0;
-            alwaysUnlocked = true;
-        }};
+
+        perseaItems.addAll(
+                aluminum,cobalt,coal,sand,graphite,cobaltglass,silicon,fiberglass,carbon,carbonFiber,tantalum,composite,energyCrystal,thorium,surgeAlloy,energyAlloy,enrichedThorium
+        );
     }
 }

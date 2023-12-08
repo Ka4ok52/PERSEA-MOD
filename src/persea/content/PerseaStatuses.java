@@ -1,7 +1,7 @@
 package persea.content;
 
 import persea.graphics.*;
-import persea.type.statuses.*;
+import persea.world.statuses.*;
 import mindustry.type.*;
 
 public class PerseaStatuses {
