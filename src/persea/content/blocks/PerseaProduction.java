@@ -21,7 +21,6 @@ import multicraft.Recipe;
 import persea.content.PerseaFx;
 import persea.content.PerseaItems;
 import persea.content.PerseaLiquids;
-import persea.world.draw.DrawStages;
 import persea.world.meta.PerseaAttribute;
 import persea.world.meta.PerseaEnv;
 
@@ -83,7 +82,7 @@ public class PerseaProduction {
         greenhouse = new AttributeCrafter("greenhouse"){{
             //TODO do growth stages
             size = 3;
-            craftTime = 800;
+            craftTime = 1401;
             itemCapacity = 10;
             hasItems = true;
             hasLiquids = true;
@@ -95,7 +94,10 @@ public class PerseaProduction {
             maxBoost = 2f;
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),
-                    new DrawStages("-stages"),
+                    new DrawFrames(){{
+                        frames = 3;
+                        interval = 467f;
+                    }},
                     new DrawRegion(),
                     new DrawGlowRegion(){{
                         alpha = 0.6f;

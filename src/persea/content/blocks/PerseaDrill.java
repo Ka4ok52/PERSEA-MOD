@@ -29,7 +29,7 @@ public class PerseaDrill {
             rotators = 1;
             rotatorsSideSpace = 0.8f;
             tier = 4;
-            drillTime = 30 * 2.5f * 2f;
+            drillTime = 40 * 3.5f;
             researchCost = with(PerseaItems.aluminum, 400, PerseaItems.cobalt, 200);
 
             consumePower(0.5f);
@@ -38,7 +38,7 @@ public class PerseaDrill {
         }};
         hammerDrill = new Drill("hammer-drill"){{
             tier = 4;
-            drillTime = 400;
+            drillTime = 300;
             size = 3;
             researchCost = with(PerseaItems.aluminum, 120, Items.graphite, 80);
 
